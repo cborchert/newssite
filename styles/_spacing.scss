@@ -1,0 +1,112 @@
+@use "scale";
+
+// space-size based on https://type-scale.com/
+$space-scale: scale.$scale-golden;
+
+$space-default: 0.8rem;
+
+@function scale-up-space($size: $space-default, $times: 1) {
+  @return scale.scale-up($size, $space-scale, $times);
+}
+
+@function scale-down-space($size: $space-default, $times: 1) {
+  @return scale.scale-down($size, $space-scale, $times);
+}
+
+$space-m: $space-default;
+$space-md: $space-m;
+
+$space-s: scale-down-space(
+  $times: 1,
+);
+$space-sm: $space-s;
+$space-xs: scale-down-space(
+  $times: 2,
+);
+$space-xxs: scale-down-space(
+  $times: 3,
+);
+
+$space-l: scale-up-space(
+  $times: 1,
+);
+$space-lg: $space-l;
+$space-xl: scale-up-space(
+  $times: 2,
+);
+$space-xxl: scale-up-space(
+  $times: 3,
+);
+$space-xxxl: scale-up-space(
+  $times: 4,
+);
+
+@function space($scale: 0) {
+  @if ($scale == 0) {
+    @return $space-default;
+  } @else if ($scale > 0) {
+    @return scale-up-space($space-default, $scale);
+  } @else {
+    @return scale-down-space($space-default, -$scale);
+  }
+}
+
+@mixin spacing($type, $scale: 0, $direction: null) {
+  $key: $type;
+  @if ($direction) {
+    $key: #{$type}-#{$direction};
+  }
+  #{$key}: space($scale);
+}
+
+@mixin padding($scale: 0) {
+  @include spacing(padding, $scale);
+}
+@mixin padding-top($scale: 0) {
+  @include spacing(padding, $scale, top);
+}
+@mixin padding-bottom($scale: 0) {
+  @include spacing(padding, $scale, bottom);
+}
+@mixin padding-left($scale: 0) {
+  @include spacing(padding, $scale, left);
+}
+@mixin padding-right($scale: 0) {
+  @include spacing(padding, $scale, right);
+}
+@mixin padding-x($scale: 0) {
+  @include padding-left($scale);
+  @include padding-right($scale);
+}
+@mixin padding-y($scale: 0) {
+  @include padding-top($scale);
+  @include padding-bottom($scale);
+}
+
+@mixin margin($scale: 0) {
+  @include spacing(margin, $scale);
+}
+@mixin margin-top($scale: 0) {
+  @include spacing(margin, $scale, top);
+}
+@mixin margin-bottom($scale: 0) {
+  @include spacing(margin, $scale, bottom);
+}
+@mixin margin-left($scale: 0) {
+  @include spacing(margin, $scale, left);
+}
+@mixin margin-right($scale: 0) {
+  @include spacing(margin, $scale, right);
+}
+@mixin margin-x($scale: 0) {
+  @include margin-left($scale);
+  @include margin-right($scale);
+}
+@mixin margin-y($scale: 0) {
+  @include margin-top($scale);
+  @include margin-bottom($scale);
+}
+@mixin margin-x-auto {
+  margin-left: auto;
+  margin-right: auto;
+}

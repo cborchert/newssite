@@ -1,0 +1,9 @@
+$box-shadow-color: rgba(0, 0, 0, 0.3);
+
+$box-shadow-x: 2px;
+$box-shadow-y: 2px;
+$box-shadow: 6px;
+
+@mixin box-shadow {
+  box-shadow: $box-shadow-x $box-shadow-y $box-shadow $box-shadow-color;
+}

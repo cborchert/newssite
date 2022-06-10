@@ -1,0 +1,97 @@
+@use "theme";
+
+$border-color: theme.$bg-contrast;
+$border-color-alt: theme.$bg-contrast-2;
+$border-color-primary: theme.$primary;
+$border-color-secondary: theme.$secondary;
+$border-color-tertiary: theme.$tertiary;
+$border-style: solid;
+
+$border-color-map: (
+  default: $border-color,
+  alt: $border-color-alt,
+  primary: $border-color-primary,
+  secondary: $border-color-secondary,
+  tertiary: $border-color-tertiary,
+);
+
+$border-size: 2px;
+$border-size-sm: 1px;
+$border-size-lg: 4px;
+$border-size-xl: 8px;
+$border-size-xxl: 16px;
+
+@function border-size($size: 0) {
+  @if ($size == 0) {
+    @return $border-size;
+  } @else if($size == -1) {
+    @return $border-size-sm;
+  } @else if($size == 1) {
+    @return $border-size-lg;
+  } @else if($size == 2) {
+    @return $border-size-xl;
+  } @else if($size == 3) {
+    @return $border-size-xxl;
+  } @else {
+    @return $border-size;
+  }
+}
+
+@mixin border-left($size: 0, $color: default, $style: $border-style) {
+  border-left: border-size($size) $border-style
+    map-get($border-color-map, $color);
+}
+
+@mixin border-right($size: 0, $color: default) {
+  border-right: border-size($size) $border-style
+    map-get($border-color-map, $color);
+}
+
+@mixin border-top($size: 0, $color: default) {
+  border-top: border-size($size) $border-style
+    map-get($border-color-map, $color);
+}
+
+@mixin border-bottom($size: 0, $color: default) {
+  border-bottom: border-size($size) $border-style
+    map-get($border-color-map, $color);
+}
+
+@mixin border-x($size: 0, $color: default) {
+  @include border-left($size, $color);
+  @include border-right($size, $color);
+}
+
+@mixin border-y($size: 0, $color: default) {
+  @include border-top($size, $color);
+  @include border-bottom($size, $color);
+}
+
+@mixin border($size: 0, $color: default) {
+  @include border-x($size, $color);
+  @include border-y($size, $color);
+}
+
+$border-radius: 4px;
+$border-radius-sm: 2px;
+$border-radius-lg: 8px;
+$border-radius-xl: 16px;
+$border-radius-round: 50%;
+
+@mixin border-radius($size: 0) {
+  @if ($size == 0) {
+    border-radius: $border-radius;
+  } @else if($size == -1) {
+    border-radius: $border-radius-sm;
+  } @else if($size == 1) {
+    border-radius: $border-radius-lg;
+  } @else if($size == 2) {
+    border-radius: $border-radius-xl;
+  } @else {
+    border-radius: $border-radius;
+  }
+}
+
+@mixin border-radius-round() {
+  border-radius: $border-radius-round;
+}

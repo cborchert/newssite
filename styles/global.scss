@@ -1,0 +1,69 @@
+@use "reset";
+@use "theme";
+@use "typography";
+@use "spacing";
+@use "borders";
+@use "widths";
+@use "shadows";
+
+body {
+  @include typography.font-text;
+  @include typography.size-md;
+  @include theme.theme-standard;
+}
+
+@for $i from 1 through 5 {
+  h#{$i} {
+    @extend .h#{$i};
+  }
+}
+
+p {
+  @include spacing.margin-bottom(2);
+}
+
+a {
+  @include theme.link;
+}
+
+img,
+code,
+pre {
+  @include spacing.margin-y(2);
+}
+
+ul,
+ol {
+  @include spacing.margin(2);
+  @include spacing.padding-left(2);
+
+  ol,
+  ul,
+  p {
+    margin: 0;
+  }
+}
+
+blockquote {
+  @include borders.border-left(1);
+  @include spacing.margin-left(2);
+  @include spacing.padding-left(2);
+}
+
+hr {
+  @include borders.border-bottom;
+  @include spacing.margin-y(5);
+  width: widths.$width-container-extra-small;
+  max-width: 50%;
+  margin: 0 auto;
+  border: 0;
+}
+
+button {
+  @include theme.theme-primary-with-hover;
+  @include spacing.padding;
+  @include spacing.margin;
+  @include borders.border-radius;
+  @include shadows.box-shadow;
+  line-height: 1;
+}

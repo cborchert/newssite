@@ -1,0 +1,9 @@
+@use "styles/widths" as *;
+@use "styles/spacing" as *;
+
+.Container {
+  width: $width-container;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 space(2);
+}

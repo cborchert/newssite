@@ -1,0 +1,10 @@
+@use "styles/borders" as *;
+@use "styles/spacing" as *;
+@use "styles/shadows" as *;
+
+.Card {
+  @include border(-1);
+  @include padding(2);
+  @include margin-y(2);
+  @include box-shadow;
+}

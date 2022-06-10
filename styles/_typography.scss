@@ -1,0 +1,139 @@
+@use "scale";
+@use "spacing";
+
+// 1. font family
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer+SC&family=Libre+Barcode+39+Extended&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap");
+
+$sans-base: "Helvetica Neue", Arial, sans-serif;
+$serif-base: Georgia, "Times New Roman", Times, serif;
+
+$text-imported: "Libre Baskerville", serif;
+$text-imported: "Montserrat", sans-serif;
+
+$title-imported: "IM Fell Great Primer SC", serif;
+
+$heading-imported: "Libre Baskerville", serif;
+
+$barcode: "Libre Barcode 39 Extended";
+
+$title: $title-imported, #{$serif-base};
+$heading: $heading-imported, #{$serif-base};
+$text: $text-imported, #{$sans-base};
+
+@mixin font-text {
+  font-family: $text;
+}
+
+@mixin font-title {
+  font-family: $title;
+}
+
+@mixin font-heading {
+  font-family: $heading;
+}
+
+@mixin font-barcode {
+  font-family: $barcode;
+}
+
+// font-size based on https://type-scale.com/
+$size-scale: scale.$scale-augmented-4;
+
+$size-default: 1.6rem;
+
+@function scale-up-size($size: $size-default, $times: 1) {
+  @return scale.scale-up($size, $size-scale, $times);
+}
+
+@function scale-down-size($size: $size-default, $times: 1) {
+  @return scale.scale-down($size, $size-scale, $times);
+}
+
+$size-m: $size-default;
+$size-md: $size-m;
+
+$size-s: scale-down-size(
+  $times: 1,
+);
+$size-sm: $size-s;
+$size-xs: scale-down-size(
+  $times: 2,
+);
+$size-xxs: scale-down-size(
+  $times: 3,
+);
+
+$size-l: scale-up-size(
+  $times: 1,
+);
+$size-lg: $size-l;
+$size-xl: scale-up-size(
+  $times: 2,
+);
+$size-xxl: scale-up-size(
+  $times: 3,
+);
+$size-xxxl: scale-up-size(
+  $times: 4,
+);
+
+@mixin size-md {
+  font-size: $size-md;
+}
+
+@mixin size-sm {
+  font-size: $size-sm;
+}
+
+@mixin size-xs {
+  font-size: $size-xs;
+}
+
+@mixin size-xxs {
+  font-size: $size-xxs;
+}
+
+@mixin size-lg {
+  font-size: $size-lg;
+}
+
+@mixin size-xl {
+  font-size: $size-xl;
+}
+
+@mixin size-xxl {
+  font-size: $size-xxl;
+}
+
+@mixin size-xxxl {
+  font-size: $size-xxxl;
+}
+
+@mixin size-xxxxl {
+  font-size: $size-xxxxl;
+}
+
+@mixin size($scale: 0) {
+  @if ($scale == 0) {
+    font-size: $size-default;
+  } @else if ($scale > 0) {
+    font-size: scale-up-size($times: $scale);
+  } @else {
+    font-size: scale-down-size($times: -$scale);
+  }
+}
+
+@mixin header($i) {
+  @include font-heading;
+  @include size(5-$i);
+  @include spacing.margin-y(3);
+  font-weight: bold;
+  font-style: normal;
+  line-height: 1;
+}
+
+@for $i from 1 through 5 {
+  .h#{$i} {
+    @include header($i);
+  }
+}

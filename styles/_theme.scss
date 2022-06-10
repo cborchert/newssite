@@ -1,0 +1,157 @@
+@use "colors";
+
+$primary: colors.$red-500;
+$primary-alt: scale-color($primary, $lightness: -30%);
+$primary-contrast: colors.$white;
+
+$secondary: colors.$neutral-900;
+$secondary-alt: scale-color($secondary, $lightness: 30%);
+$secondary-contrast: colors.$white;
+
+$tertiary: colors.$sky-600;
+$tertiary-alt: scale-color($tertiary, $lightness: -30%);
+$tertiary-contrast: colors.$slate-500;
+
+$bg: colors.$neutral-50;
+$bg-contrast: colors.$slate-900;
+$bg-contrast-2: colors.$slate-400;
+$bg-alternative: colors.$slate-900;
+$bg-alternative-contrast: colors.$slate-100;
+
+$text: $bg-contrast;
+$text-muted: $bg-contrast-2;
+$text-alternative-bg: $bg-alternative-contrast;
+
+$link: $primary;
+$link-hover: $primary-alt;
+
+$info: colors.$slate-500;
+$success: colors.$emerald-500;
+$warning: colors.$amber-400;
+$error: colors.$red;
+
+@mixin color-text {
+  color: $text;
+}
+
+@mixin color-text-muted {
+  color: $text-muted;
+}
+
+@mixin color-text-alternative-bg {
+  color: $text-alternative-bg;
+}
+
+@mixin color-primary {
+  color: $primary;
+}
+
+@mixin color-secondary {
+  color: $primary;
+}
+
+@mixin color-tertiary {
+  color: $primary;
+}
+
+@mixin color-info {
+  color: $info;
+}
+
+@mixin color-success {
+  color: $success;
+}
+
+@mixin color-warning {
+  color: $warning;
+}
+
+@mixin color-error {
+  color: $error;
+}
+
+@mixin bg-standard {
+  background-color: $bg;
+}
+
+@mixin bg-alternative {
+  background-color: $bg-alternative;
+}
+
+@mixin bg-primary {
+  background-color: $primary;
+}
+
+@mixin bg-secondary {
+  background-color: $secondary;
+}
+
+@mixin bg-tertiary {
+  background-color: $tertiary;
+}
+
+@mixin bg-info {
+  background-color: $info;
+}
+
+@mixin bg-success {
+  background-color: $success;
+}
+
+@mixin bg-warning {
+  background-color: $warning;
+}
+
+@mixin bg-error {
+  background-color: $error;
+}
+
+@mixin theme-standard {
+  @include bg-standard;
+  @include color-text;
+}
+
+@mixin theme-primary {
+  @include bg-primary;
+  color: $primary-contrast;
+}
+
+@mixin theme-primary-with-hover {
+  @include theme-primary;
+  &:hover {
+    background-color: $primary-alt;
+  }
+}
+
+@mixin theme-secondary {
+  @include bg-secondary;
+  color: $secondary-contrast;
+}
+
+@mixin theme-secondary-with-hover {
+  @include theme-secondary;
+  &:hover {
+    background-color: $secondary-alt;
+  }
+}
+
+@mixin theme-tertiary {
+  @include bg-tertiary;
+  color: $tertiary-contrast;
+}
+
+@mixin theme-tertiary-with-hover {
+  @include theme-tertiary;
+  &:hover {
+    background-color: $tertiary-alt;
+  }
+}
+
+@mixin link {
+  color: $link;
+  text-decoration: none;
+  &:hover {
+    color: $link-hover;
+    text-decoration: underline;
+  }
+}

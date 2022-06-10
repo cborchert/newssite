@@ -1,0 +1,19 @@
+@use "styles/typography" as *;
+@use "styles/spacing" as *;
+@use "styles/theme" as *;
+@use "styles/borders" as *;
+
+.Header {
+  @include font-title;
+  @include size(5);
+  @include border-bottom(2);
+  margin: 0 auto space(4);
+  line-height: 1;
+  display: block;
+
+  &,
+  &:hover {
+    @include color-text;
+    text-decoration: none;
+  }
+}

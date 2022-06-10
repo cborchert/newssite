@@ -1,0 +1,16 @@
+@use "sass:math";
+
+// scale based on https://type-scale.com/
+$scale-major-3: 1.25;
+$scale-perfect-4: 1.333;
+$scale-augmented-4: 1.414;
+$scale-perfect-5: 1.5;
+$scale-golden: 1.618;
+
+@function scale-up($size: 1, $scale: $scale-golden, $times: 1) {
+  @return $size * math.pow($scale, $times);
+}
+
+@function scale-down($size: 1, $scale: $scale-golden, $times: 1) {
+  @return $size * math.div(1, math.pow($scale, $times));
+}
